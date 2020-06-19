@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+
+<form action="@Url.Action("Login", "Pokemon")" method="POST">
+    <fieldset>
+        <div class="form-group">
+            <input class="form-control" placeholder="Username" name="Username" type="text">
+            @Html.ValidationMessage("Username")
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Password" name="Password" type="password" value="">
+            @Html.ValidationMessage("Password")
+        </div>
+
+        <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+    </fieldset>
+</form>

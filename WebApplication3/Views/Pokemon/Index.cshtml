@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<div>
+    <input type="search" id="busc">
+    <button onclick="busqueda()">Buscar</button>
+
+</div>
+@if (ViewBag.usuario == null)
+{
+    <a href="/Pokemon/Crear" class="btn btn-primary">Crear Pokemon</a>
+    <a href="/Pokemon/Login" class="btn btn-primary">Logear</a>
+}
+@if (ViewBag.usuario != null)
+{
+    <a class="btn btn-success" href="/Pokemon/MisPokemon?id=@ViewBag.usuario">Ir a mis capturas</a>
+    <a href="/Pokemon/Salir" class="btn btn-primary">Salir</a>
+}
+
+<div id="enc">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Imagen</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.Tipo</td>
+                    <td><img src="@item.Imagen" style="width:50px;height:50px" /></td>
+                    @if (ViewBag.usuario != null)
+                    {
+                        <td><a href="/Pokemon/Capturar?idPokemon=@item.Id&idUsuario=@ViewBag.usuario&tipo=1">Atrapar con pokeball</a></td>
+                        <td><a href="/Pokemon/Capturar?idPokemon=@item.Id&idUsuario=@ViewBag.usuario&tipo=2">Atrapar con superball</a></td>
+                        <td><a href="/Pokemon/Capturar?idPokemon=@item.Id&idUsuario=@ViewBag.usuario&tipo=3">Atrapar con ultraball</a></td>
+                        <td><a href="/Pokemon/Capturar?idPokemon=@item.Id&idUsuario=@ViewBag.usuario&tipo=4">Atrapar con masterball</a></td>
+
+                    }
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+
+    function busqueda(e) {
+        var nombre = $("#busc");
+        var value = nombre.val();
+        $.get("/Pokemon/IndexBus?nom=" + value, function (respuesta) {
+            $("#enc").html(respuesta);
+        });
+
+        e.preventDefault();
+    }
+
+</script>

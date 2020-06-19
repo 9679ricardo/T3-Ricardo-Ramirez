@@ -1,0 +1,40 @@
+﻿
+
+@{
+    ViewBag.Title = "Crear";
+}
+
+<h2>Crear</h2>
+
+
+<form action="/Pokemon/Crear" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" class="form-control" name="Nombre">
+        @Html.ValidationMessage("Nombre")
+
+    </div>
+    <div class="form-group">
+        <label>Tipo</label>
+        <select name="Tipo" class="form-control">
+            <option value="no">------</option>
+            @foreach (var item in ViewBag.tipos)
+            {
+                <option value="@item">@item</option>
+            }
+
+        </select>
+
+        @Html.ValidationMessage("Tipo")
+
+    </div>
+
+    <div class="form-group">
+        <label>Imagen</label>
+        <input type="file" name="file">
+        @Html.ValidationMessage("Imagen")
+    </div>
+
+    <button class="btn btn-primary">Guardar</button>
+
+</form>

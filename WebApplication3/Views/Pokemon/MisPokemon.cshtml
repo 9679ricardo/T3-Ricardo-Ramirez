@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "MisPokemon";
+}
+
+<h2>MisPokemon</h2>
+
+<a class="btn btn-primary" href="/Pokemon/Index?id=@ViewBag.usuario">Capturar</a>
+<a href="/Pokemon/Salir" class="btn btn-primary">Salir</a>
+<div id="enc">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Imagen</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.Tipo</td>
+                    <td><img src="@item.Imagen" style="width:50px;height:50px" /></td>
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+</div>
